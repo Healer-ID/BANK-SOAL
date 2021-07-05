@@ -13,7 +13,8 @@ class Dashboard extends CI_Controller {
 	{
      
         $data['row'] = $this->user_m->get();
-		$this->template->load('template', 'dashboard' , $data);
+		$data['judul'] = 'User';
+		$this->template->load('template', 'User/dashboard' , $data);
 	}
 
     public function add()
@@ -34,7 +35,8 @@ class Dashboard extends CI_Controller {
 		$this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
 
 		if ($this->form_validation->run() == FALSE){
-			$this->template->load('template', 'user_form_add');
+			$data['judul']="User";
+			$this->template->load('template', 'User/user_form_add',$data);
 		}
 		else{
 				$post = $this->input->post(null, TRUE);
@@ -42,7 +44,7 @@ class Dashboard extends CI_Controller {
 				if($this->db->affected_rows() > 0){
 					echo "<script> alert('Data Berhasil Disimpan'); </script>";
 				}
-				echo "<script>window.location='".site_url('dashboard')."'; </script>"; 
+				echo "<script>window.location='".site_url('User/dashboard')."'; </script>"; 
 		}
 	}
 
@@ -74,7 +76,8 @@ class Dashboard extends CI_Controller {
 			$query = $this->user_m->get($id);
 			if($query->num_rows() >0){
 				$data['row'] = $query->row();
-				$this->template->load('template', 'user_form_edit', $data);
+				$data['judul']="User";
+				$this->template->load('template', 'User/user_form_edit', $data);
 			}else{
 				echo "<script> alert('Data Tidak ditemukan');";
 				echo "window.location='".site_url('dashboard')."'; </script>"; 
@@ -87,7 +90,7 @@ class Dashboard extends CI_Controller {
 				if($this->db->affected_rows() > 0){
 					echo "<script> alert('Data Berhasil Disimpan'); </script>";
 				}
-				echo "<script>window.location='".site_url('dashboard')."'; </script>"; 
+				echo "<script>window.location='".site_url('User/dashboard')."'; </script>"; 
 		}
 	} 
 	function username_check(){
