@@ -31,7 +31,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0"> 
-                <table class="table table-striped">
+              <table id="table1" class="table table-striped">
                     <thead>
                         <tr>
                         <th>no</th>

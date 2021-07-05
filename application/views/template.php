@@ -93,9 +93,15 @@
               </a>
               <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="<?= site_url('checkin') ?>" class="nav-link">
+                    <a href="<?= site_url('soal') ?>"
+                      <?php  if($judul == "Soal"){?>
+                        class= "nav-link active"
+                      <?php }else {?>
+                        class= "nav-link"
+                      <?php } ?>
+                      >
                       <i class="far fa-circle nav-icon"></i>
-                      <p>Check In</p>
+                      <p>Soal</p>
                     </a>
                   </li>
                   <li class="nav-item">
