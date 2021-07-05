@@ -58,12 +58,13 @@
                     </div>
                 </div>
                 <!-- /.card-body -->
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="col-12"> 
+                  <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+                  <button type="submit" name="login" class="btn btn-primary btn-block">submit</button>
                 </div>
             </form>
 
-      <p>Sudah punya akun ? silahkan <a href="<?=site_url('auth/login')?>" class="text-center">login</a> </p>
+       <p>Sudah punya akun ? silahkan <a href="<?=site_url('auth/login')?>" class="text-center">login</a> </p>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
