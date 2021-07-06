@@ -54,6 +54,14 @@
                   <input type="text" class="form-control" id="exampleInputtahun" placeholder="masukan tahun ujian">
                 </div>
                 <div class="form-group">
+                    <label for="exampleInputPassword1">Kategori Soal</label>
+                    <br>
+                    <input type="radio" id="UTS" name="kategori" value="satu">
+                    <label for="satu">Ujian Tengah Semester (UTS)</label>
+                    <br><input type="radio" id="UAS" name="kategori" value="dua"> 
+                    <label for="dua">Ujian Akhir Semester (UAS)</label>
+                  </div>
+                <div class="form-group">
                   <label for="exampleInputFile">File Soal</label>
                   <div class="input-group">
                     <div class="custom-file">
