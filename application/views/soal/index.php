@@ -23,6 +23,7 @@
                             <thead>
                                 <tr class="table-success">
                                 <th></th>
+                                <th>action</th>
                                 <th>Mata Kuliah</th>
                                 <th>Semester</th>
                                 <th>Tanggal upload</th>
@@ -30,6 +31,7 @@
                                 <th>Tahun</th>
                                 <th>Kategori</th>
                                 <th>File</th>
+                                <th>download</th>
                                 </tr>
                             </thead>
 
@@ -38,6 +40,7 @@
                             <tr>
                                 <td>
                                     <a href="<?= site_url('soal/edit/' . $row->id) ?>" class="btn btn-success btn-sm"><i class="fa fa-edit"></i> </a>
+                                    <th>
                                     <a href="javascript:void(0);" data="<?= $row->id ?>" class="btn btn-danger btn-sm item-delete"><i class="fa fa-trash"></i> </a>
                                 </td>
                                 <td><?=$row->matkul?></td>
