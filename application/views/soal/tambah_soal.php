@@ -31,7 +31,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body"> 
-              <?= form_open_multipart(tambah_soal);?>
+              <?= form_open_multipart ('soal/tambah_soal') ;?>
               <div class="card-body">
                 <div class="form-group">
                   <label for="namamatkul">Nama Matkul</label>

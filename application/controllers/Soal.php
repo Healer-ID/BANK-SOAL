@@ -45,8 +45,9 @@ class Soal extends CI_Controller {
 					'dosen'			=> $nama_dosen,
 					'tahun'			=> $tahun_ujian,
 					'kategori'		=> $id_kategori,
-					'file'			=> $file
+					'file'			=> $file,
 				);
+				
 				$this->db->insert('soal', $data);
 				$this->session->set_flashdata('pesan', '<div
 				class="alert alert-succes" role="alert"berhasil</div> ');
