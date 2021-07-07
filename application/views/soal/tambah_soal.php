@@ -31,7 +31,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body"> 
-              <?= form_open_multipart(soal/tambah_soal);?>
+              <?= form_open_multipart(tambah_soal);?>
               <div class="card-body">
                 <div class="form-group">
                   <label for="namamatkul">Nama Matkul</label>
@@ -62,11 +62,11 @@
                     <label for="dua">Ujian Akhir Semester (UAS)</label>
                   </div>
                 <div class="form-group">
-                  <label for="file">File Soal</label>
+                  <label for="userfile">File Soal</label>
                   <div class="input-group">
                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" name="file">
-                      <label class="custom-file-label" for="file">masukan file soal</label>
+                      <input type="file" class="custom-file-input" name="userfile">
+                      <label class="custom-file-label" for="userfile">masukan file soal</label>
                     </div>
                   </div>
                 </div>
@@ -80,7 +80,7 @@
               ><b>Tambah Soal</b></a
             > -->
               </div>
-            <?php echo form_close(); ?>
+            <?= form_close(); ?>
           
   </div>
   <!-- /.card -->

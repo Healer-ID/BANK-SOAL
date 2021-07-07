@@ -21,37 +21,37 @@ class Soal extends CI_Controller {
 	}
     public function tambah_Soal(){
 
-		$namamatkul	= $this->input->post('namamatkul');
-		$semester	= $this->input->post('semester');
-		$tanggal	= $this->input->post('tanggal');
-		$dosen		= $this->input->post('dosen');
-		$tahun		= $this->input->post('tahun');
-		$kategori	= $this->input->post('kategori');
-		$file		= $_FILES['file'];
-		if ($file=''){}else{
 			$config['upload_path']	= './views/file';
 			$config['allow_types']	= 'pdf|jpg|png|doc';
 
-			$this->load->library('upload',$config);
-			if(!$this->upload->do_upload('file')){
-				echo"upload gagal"; die();
-			}else{
-				$file=$this->upload->data('file_name');
-			}
-			
-			$data = array(
-				'namamatkul'	=> $namamatkul,
-				'semester'		=> $semester,
-				'tanggal'		=> $tanggal,
-				'dosen'			=> $dosen,
-				'tahun'			=> $tahun,
-				'kategori'		=> $kategori,
-				'file'			=> $file,
-			);
-		}
+			$this->load->library('upload', $config);
+			if(!$this->upload->do_upload('userfile')){
+				echo "gagal memuat";
 
-		// $this->soal_m->input_data($data, 'soal');
-		// redirect('tambah_soal/index');
+			}else{
+				$file = $this->upload->data();
+				$file = $file['file_name'];
+				$namamatkul	= $this->input->post('namamatkul', TRUE);
+				$semester	= $this->input->post('semester', TRUE);
+				$tanggal	= $this->input->post('tanggal', TRUE);
+				$dosen		= $this->input->post('dosen', TRUE);
+				$tahun		= $this->input->post('tahun', TRUE);
+				$kategori	= $this->input->post('kategori', TRUE);
+
+				$data = array(
+					'namamatkul'	=> $namamatkul,
+					'semester'		=> $semester,
+					'tanggal'		=> $tanggal_upload,
+					'dosen'			=> $nama_dosen,
+					'tahun'			=> $tahun_ujian,
+					'kategori'		=> $id_kategori,
+					'file'			=> $file
+				);
+				$this->db->insert('soal', $data);
+				$this->session->set_flashdata('pesan', '<div
+				class="alert alert-succes" role="alert"berhasil</div> ');
+				redirect('soal');
+			}
 
         $query = $this->soal->get();
 		$data = array(
