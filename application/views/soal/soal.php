@@ -60,8 +60,8 @@
                                 <td><?=$data->tahun_ujian?></td>
                                 <td><?=$data->jenis?></td>
                                 <td><?=$data->file?></td>
-                                <td><button class="btn btn-primary btn-xs">
-                                <a href="<?php echo base_url().'soal/download/'.$data->id_soal; ?>" class="fa fa-download">Download</a>
+                                <td><button class="btn btn-sucess btn-xs">
+                                <a href="<?php echo base_url().'soal/download/'.$data->id_soal; ?>" class="fa fa-download"> Download</a>
                                       <!-- <i class="fa fa-download"></i> Download -->
                                   </button></td>
                             </tr>

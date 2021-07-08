@@ -68,27 +68,4 @@ class Soal extends CI_Controller {
         force_download($download, NULL);
     }
 
-
-
-    // public function download($id){
-    //     if(!empty($id)){
-    //         //load download helper
-    //         $this->load->helper('download');
-            
-    //         //get file info from database
-    //         $fileInfo = $this->file->getRows(array('id_soal' => $id_soal));
-            
-    //         //file path
-    //         $file = 'upload/'.$fileInfo['file_name'];
-            
-    //         //download file from directory
-    //         force_download($file, NULL);
-    //     }
-    // }
-
-    // public function get_all_data()
-    //     {
-    //     $data['result'] = $this->model->get_data(); // 
-    //     $this->load->view('soal',$data); //past the data to the view
-    //     }
 }
