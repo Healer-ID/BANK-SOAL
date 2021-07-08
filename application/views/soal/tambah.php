@@ -66,7 +66,7 @@
                             <legend class="col-form-label col-sm-2 pt-0">Kategori</legend>
                             <div class="col-sm-10">
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" id="kategori" name="kategori" value="Laki-laki" <?php if (set_value('kategori') == "UTS") : echo "checked";
+                                    <input class="form-check-input" type="radio" id="kategori" name="kategori" value="UTS" <?php if (set_value('kategori') == "UTS") : echo "checked";
                                                                                                                                             endif; ?>>
                                     <label class="form-check-label" for="kategori">
                                         UTS

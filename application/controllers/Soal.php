@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Soal extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('Soal_model'); //load model soal 
+		$this->load->model('Soal_model'); //load model soal
 	}
 
 	public function index()
@@ -22,10 +22,10 @@ class Soal extends CI_Controller {
 
  public function download($id){
     $this->load->helper('download');
-    $soal = $this->soal_model->download($id);
-    $file = 'upload/'.$soal ['file'];
-    force_download($file, NULL);
-
+    $fileinfo = $this->soal_model->download('id'->$id);
+    $soal_model = 'soal'.$fileinfo ['file_soal'];
+    force_download($soal_model, NULL);
+ }
     //method add digunakan untuk menampilkan form tambah data mahasiswa
     public function tambah(){
         $soal = $this->Soal_model; //objek model
