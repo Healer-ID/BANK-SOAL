@@ -91,6 +91,7 @@ class Soal_model extends CI_Model{
         return $this->db->delete($this->table, array("id" => $id));
     }
    
+<<<<<<< HEAD
    public function download($id){
   $query = $this->db->download($this->table,array('id'=>$id));
   return $query->row_array();
@@ -119,4 +120,6 @@ class Soal_model extends CI_Model{
 //     return $result;
 // }
 
+=======
+>>>>>>> fb0388402c3653610e05c303cb4d2e049ce2225e
 }
