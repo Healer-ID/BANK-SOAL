@@ -24,9 +24,9 @@
   <div class="login-box">
     <div class="login-logo">
       <b>
-        <h3>TUGAS AKHIR
+        <h3>BANK SOAL
       </b>
-      <p>REKAYASA WEB</p>
+      <p>TEKNIK INFORMATIKA - UAD</p>
     </div>
     <!-- /.login-logo -->
     <div class="card">

@@ -116,6 +116,7 @@
                       <p>Kategori Soal</p>
                       </a>
                   </li>
+                  <?php if ($this->fungsi->user_login()->level == 1){ ?>
                 <li class="nav-item">
                   <a href="<?= site_url('dashboard') ?>" 
                       <?php  if($judul == "User"){?>
@@ -126,6 +127,7 @@
                       >
                     <i class="far fa-circle nav-icon"></i>
                     <p>User</p>
+                    <?php } ?>
                   </a>
                 </li>
               </ul>
