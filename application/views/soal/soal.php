@@ -59,7 +59,7 @@
                                 <td><?=$data->nama_dosen?></td>
                                 <td><?=$data->tahun_ujian?></td>
                                 <td><?=$data->jenis?></td>
-                                <td>FILE NYA</td>
+                                <td><?=$data->file?></td>
                                 <td><button class="btn btn-primary btn-xs">
                                       <i class="fa fa-download"></i> Download
                                   </button></td>

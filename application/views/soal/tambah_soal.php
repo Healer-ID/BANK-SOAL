@@ -31,7 +31,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body"> 
-              <form action="<?=site_url('soal/process')?>" method="post">
+              <?php echo form_open_multipart('soal/process');?>
               <div class="card-body">
                 <div class="form-group">
                   <label for="exampleInputnama">Nama Matkul</label>
@@ -44,7 +44,7 @@
                 </div>
             
                 <input type ="hidden"name="tanggal_upload" value="<?=date('Y-m-d')  ?>" readonly /> 
-                <input type ="hidden" name="file" value="test" readonly /> 
+            
                 <input type="hidden" name='iduser' value="<?= $this->fungsi->user_login()->id_user ?>">
               
                 <div class="form-group">
@@ -67,7 +67,7 @@
                   <label for="exampleInputFile">File Soal</label>
                   <div class="input-group">
                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="exampleInputFile">
+                      <input type="file" name="file" class="custom-file-input" id="exampleInputFile">
                       <label class="custom-file-label" for="exampleInputFile">masukan file soal</label>
                     </div>
                   </div>
@@ -80,7 +80,7 @@
                 <button class="btn btn-success" name="add" type="submit" name="checkin">Simpan</button>
                
             </div>
-            </form>
+            <?php echo form_close();?>
           
   </div>
   <!-- /.card -->

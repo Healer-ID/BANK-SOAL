@@ -30,9 +30,27 @@ class Soal extends CI_Controller {
     public function process(){
         if(isset($_POST['add'])){							
 			$inputan = $this->input->post(null, TRUE);
-            $this->soal->tambah_soal($inputan);										
-				echo "<script> alert('Data Berhasil Ditambahkan'); </script>";		
-				echo "<script>window.location='".site_url('soal')."'; </script>";
+            $config['upload_path']          = './upload/';
+            $config['allowed_types']        = 'gif|jpg|png|pdf';
+            $config['max_size']             = 2048;
+            $config['file_name']        = 'item-'.date('ymd').'-'.substr(md5(rand()),0,10);
+            $this->load->library('upload',$config);
+            if (@_FILES['file']['name'] != null){
+                if($this->upload->do_upload('file')){
+                    $inputan['file'] = $this->upload->data('file_name');
+                    $this->soal->tambah_soal($inputan);										
+                        echo "<script> alert('Data Berhasil Ditambahkan'); </script>";		
+                        echo "<script>window.location='".site_url('soal')."'; </script>";
+                }
+            } else {
+                $post['file'] = null ;
+                $inputan['file'] = $this->upload->data('file_name');
+                    $this->soal->tambah_soal($inputan);										
+                        echo "<script> alert('Data Berhasil Ditambahkan'); </script>";		
+                        echo "<script>window.location='".site_url('soal')."'; </script>";
+            }
+            
+           
         }	else if(isset($_POST['edit'])){ 
 			$inputan = $this->input->post(null, TRUE);
             $this->soal->edit($inputan);										
