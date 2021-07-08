@@ -6,8 +6,6 @@ class Soal extends CI_Controller {
 		check_not_login();
         $this->load->model('soal_m','soal');
         $this->load->model('kategori_m','kategori');
-        $this->load->helper('url');
-        
 		// check_admin();
         // $this->load->model('kategori_m');
 	}
@@ -19,7 +17,6 @@ class Soal extends CI_Controller {
 			'judul' => 'Soal',
 			'row' => $query->result(),
 		);
-        
 		$this->template->load('template', 'soal/soal', $data);
 	}
     public function tambah_Soal(){
@@ -61,35 +58,4 @@ class Soal extends CI_Controller {
             echo "<script>window.location='".site_url('soal')."'; </script>";	
         }
     }
-
-    public function download($id_soal){
-        $this->load->helper('download');
-        $fileinfo = $this->files_model->download($id_soal);
-        $file = 'upload/'.$fileinfo['filename'];
-        force_download($file, NULL);
-    }
-
-
-
-    // public function download($id){
-    //     if(!empty($id)){
-    //         //load download helper
-    //         $this->load->helper('download');
-            
-    //         //get file info from database
-    //         $fileInfo = $this->file->getRows(array('id_soal' => $id_soal));
-            
-    //         //file path
-    //         $file = 'upload/'.$fileInfo['file_name'];
-            
-    //         //download file from directory
-    //         force_download($file, NULL);
-    //     }
-    // }
-
-    // public function get_all_data()
-    //     {
-    //     $data['result'] = $this->model->get_data(); // 
-    //     $this->load->view('soal',$data); //past the data to the view
-    //     }
 }

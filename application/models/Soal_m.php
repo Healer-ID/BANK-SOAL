@@ -23,34 +23,5 @@ class Soal_m extends CI_Model
         );
         $this->db->insert('soal',$tambah_kategori);
     }
-
-    public function download($id){
-        $query = $this->db->get_where('soal',array('id_soal'=>$id_soal));
-        return $query->row_array();
-    }
-
-    // function getRows($params = array()){
-    //     $this->db->select('*');
-    //     $this->db->from('soal');
-    //     $this->db->where('*');
-    //     $this->db->order_by('created','desc');
-    //     if(array_key_exists('id_soal',$params) && !empty($params['id_soal'])){
-    //         $this->db->where('id_soal',$params['id_soal']);
-    //         //get records
-    //         $query = $this->db->get();
-    //         $result = ($query->num_rows() > 0)?$query->row_array():FALSE;
-    //     }else{
-    //         //set start and limit
-    //         if(array_key_exists("start",$params) && array_key_exists("limit",$params)){
-    //             $this->db->limit($params['limit'],$params['start']);
-    //         }elseif(!array_key_exists("start",$params) && array_key_exists("limit",$params)){
-    //             $this->db->limit($params['limit']);
-    //         }
-    //         //get records
-    //         $query = $this->db->get();
-    //         $result = ($query->num_rows() > 0)?$query->result_array():FALSE;
-    //     }
-    //     //return fetched data
-    //     return $result;
-    // }
+   
 }
