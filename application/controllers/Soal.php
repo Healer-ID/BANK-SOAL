@@ -20,12 +20,6 @@ class Soal extends CI_Controller {
 	 $this->load->view('templates/footer');
 	}
 
- public function download($id){
-    $this->load->helper('download');
-    $soal = $this->soal_model->download($id);
-    $file = 'upload/'.$soal ['file'];
-    force_download($file, NULL);
-
     //method add digunakan untuk menampilkan form tambah data mahasiswa
     public function tambah(){
         $soal = $this->Soal_model; //objek model
