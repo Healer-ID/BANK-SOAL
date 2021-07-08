@@ -51,7 +51,7 @@
                                 <td><?=$row->kategori?></td>
                                 <td><?=$row->file_soal?></td>
                                 <td><button class="btn btn-primary btn-xs">
-                                      <i class="fa fa-download"></i> Download</button></td>
+                                      <a href="<?= site_url($row->id) ?>" class="fa fa-download"></a> Download</button></td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>

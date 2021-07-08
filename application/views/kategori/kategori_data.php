@@ -30,7 +30,7 @@
                 <h3 class="card-title">Data Kategori Mata Kuliah</h3>
               </div>
               <!-- /.card-header -->
-              <div class="card-body "> 
+              <div class="card-body p-0"> 
               <table id="table1" class="table table-striped">
                     <thead>
                         <tr>
