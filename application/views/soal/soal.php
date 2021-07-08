@@ -61,7 +61,8 @@
                                 <td><?=$data->jenis?></td>
                                 <td><?=$data->file?></td>
                                 <td><button class="btn btn-primary btn-xs">
-                                      <i class="fa fa-download"></i> Download
+                                <a href="<?php echo base_url().'soal/download/'.$data->id_soal; ?>" class="fa fa-download">Download</a>
+                                      <!-- <i class="fa fa-download"></i> Download -->
                                   </button></td>
                             </tr>
                         <?php 
@@ -75,4 +76,8 @@
 
 </section>
 <!-- /.content -->
- 
+<script type="text/javascript">
+   $(document).ready(function() {
+    $('table.display').DataTable();
+   } );
+  </script>
