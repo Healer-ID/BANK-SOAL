@@ -1,67 +1,90 @@
-<?php defined('BASEPATH') OR exit('No direct script access allowed');
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Soal extends CI_Controller {
-	function __construct(){
+	public function __construct(){
 		parent::__construct();
-		check_not_login();
-        $this->load->model('soal_m','soal');
-        
-		// check_admin();
-        // $this->load->model('kategori_m');
+		$this->load->model('Soal_model'); //load model soal 
 	}
 
 	public function index()
 	{
-        $query = $this->soal->get();
-		$data = array(
-			'judul' => 'Soal',
-			'row' => $query->result(),
-		);
-		$this->template->load('template', 'soal/soal', $data);
+     $data["title"] = "List Data Soal";
+	 //ambil fungsi getAll untuk menampilkan semua data mahasiswa
+	 $data["data_soal"] = $this->Soal_model->getAll();
+	 //load view header.php pada folder views/templates
+	 $this->load->view('templates/header', $data);
+	 $this->load->view('templates/menu');
+	 //load view index.php pada folder views/soal
+	 $this->load->view('soal/index', $data);
+	 $this->load->view('templates/footer');
 	}
-    public function tambah_Soal(){
 
-		$namamatkul	= $this->input->post('namamatkul');
-		$semester	= $this->input->post('semester');
-		$tanggal	= $this->input->post('tanggal');
-		$dosen		= $this->input->post('dosen');
-		$tahun		= $this->input->post('tahun');
-		$kategori	= $this->input->post('kategori');
-		$file		= $_FILES['file'];
-		if ($file=''){}else{
-			$config['upload_path']	= './views/file';
-			$config['allow_types']	= 'pdf|jpg|png|doc';
+ public function download($id){
+    $this->load->helper('download');
+    $soal = $this->soal_model->download($id);
+    $file = 'upload/'.$soal ['file'];
+    force_download($file, NULL);
 
-			$this->load->library('upload',$config);
-			if(!$this->upload->do_upload('file')){
-				echo"upload gagal"; die();
-			}else{
-				$file=$this->upload->data('file_name');
-			}
-			
-			$data = array(
-				'namamatkul'	=> $namamatkul,
-				'semester'		=> $semester,
-				'tanggal'		=> $tanggal,
-				'dosen'			=> $dosen,
-				'tahun'			=> $tahun,
-				'kategori'		=> $kategori,
-				'file'			=> $file,
-			);
-		}
+    //method add digunakan untuk menampilkan form tambah data mahasiswa
+    public function tambah(){
+        $soal = $this->Soal_model; //objek model
+        $validation = $this->form_validation; //objek form validation
+        $validation->set_rules($soal->rules()); //menerapkan rules validasi pada mahasiswa_model
+        //kondisi jika semua kolom telah divalidasi, maka akan menjalankan method save pada mahasiswa_model
+        if ($validation->run()) {
+            $soal->save();
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            Data Soal berhasil disimpan. 
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button></div>');
+            redirect("soal");
+        }
+        $data["title"] = "Tambah Data Soal";
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/menu');
+        $this->load->view('soal/tambah', $data);
+        $this->load->view('templates/footer');
+    }
 
-		// $this->soal_m->input_data($data, 'soal');
-		// redirect('tambah_soal/index');
+	public function edit($id = null){
+        if (!isset($id)) redirect('soal');
 
-        $query = $this->soal->get();
-		$data = array(
-			'judul' => 'Soal',
-			'row' => $query->result(),
-		);
-		$this->template->load('template', 'soal/tambah_soal', $data);
+        $soal = $this->Soal_model;
+        $validation = $this->form_validation;
+        $validation->set_rules($soal->rules());
+
+        if ($validation->run()) {
+            $soal->update();
+            $this->session->set_flashdata('message', '<div class="alert alert-success alert-dismissible fade show" role="alert">
+            Data Soal berhasil disimpan.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button></div>');
+            redirect("soal");
+        }
+        $data["title"] = "Edit Data Soal";
+        $data["data_soal"] = $soal->getById($id);
+        if (!$data["data_soal"]) show_404();
+        $this->load->view('templates/header', $data);
+        $this->load->view('templates/menu');
+        $this->load->view('soal/edit', $data);
+        $this->load->view('templates/footer');
+    }
+	public function delete(){
+        $id = $this->input->get('id');
+        if (!isset($id)) show_404();
+        $this->Soal_model->delete($id);
+        $msg['success'] = true;
+        $this->session->set_flashdata('message', '
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+        Data Soal berhasil dihapus.
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button></div>');
+        $this->output->set_output(json_encode($msg));
+
+    
     }
 }
-// 	public function input_soal(){
-		
-   
-// }
