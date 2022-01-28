@@ -10,6 +10,18 @@ class User_m extends CI_Model
         $query = $this->db->get();
         return $query;
     }
+    public function hitunguser()
+	{   
+		$query = $this->db->get('user');
+			if($query->num_rows()>0)
+			{
+				return $query->num_rows();
+			}
+			else
+			{
+			return 0;
+			}
+	}
     public function get($id = null)
     {
         $this->db->from('user');
@@ -19,6 +31,14 @@ class User_m extends CI_Model
         $query = $this->db->get();
         return $query;
     }
+    public function get_keyword($keyword){
+		$this->db->from('user');
+		$this->db->like('username',$keyword);
+		$this->db->or_like('nama',$keyword);
+		$this->db->or_like('no_hp',$keyword);
+        $query=$this->db->get();
+		return $query;
+	}
     public function add($post){
         $parrams['username'] = $post['user'];
         $parrams['password'] = sha1($post['password']);
@@ -42,4 +62,5 @@ class User_m extends CI_Model
         $this->db->where('id_user', $id);
         $this->db->delete('user');
     }
+
 }

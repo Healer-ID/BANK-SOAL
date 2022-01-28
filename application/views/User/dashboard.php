@@ -27,11 +27,17 @@
                         <i class="fa fa-user-plus"></i> Create
                     </a>
                 </div>
-                <h3 class="card-title">Data User</h3>
+                <div class="navbar-form">
+                  <?php echo form_open('dashboard/search')?>
+                    <input type="text" name="keyword" class="form-cntrol" placeholder="search">
+                    <button type="submit" class="btn btn-success">Cari</button> 
+                  <?php echo form_close()?>
+                </div>
+                
               </div>
               <!-- /.card-header -->
-              <div class="card-body p-0"> 
-                <table class="table table-striped">
+              <div class="card-body"> 
+                <table id="table" class="table table-striped">
                     <thead>
                         <tr>
                         <th style="width: 10px">no</th>
@@ -78,7 +84,11 @@
                         ?>
                     </tbody>
                 </table>
-               
+                <div class="card-footer">
+                <a href="<?=site_url('dashboard/print')?>" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+                <a href="<?=site_url('dashboard/laporanpdf/')?>" class="btn btn-default"><i class="fas fa-print"></i> EXPERT PDF</a>
+                <a href="<?=site_url('dashboard/loaddata')?>" class="btn btn-default"><i class="fas fa-download"></i> data json</a>             
+                </div>
   </div>
   <!-- /.card -->
 

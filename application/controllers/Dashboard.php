@@ -15,9 +15,34 @@ class Dashboard extends CI_Controller {
      
         $data['row'] = $this->user_m->get();
 		$data['judul'] = 'User';
+		$data['jumlah'] = $this->user_m->hitunguser();
 		$this->template->load('template', 'User/dashboard' , $data);
 	}
 
+	function loaddata(){
+		$sql = $this->db->query("select * from user")->result();
+		echo json_encode($sql);
+	}
+	function laporanpdf(){
+		$this->load->library('dompdf_gen');
+		$data['row'] = $this->user_m->get();
+		$this->load->view('User/laporan_pdf', $data);
+		$paper_size = 'A4';
+		$orientation = 'landscape';
+		$html = $this->output->get_output();
+		$this->dompdf->set_paper($paper_size, $orientation);
+
+		$this->dompdf->load_html($html);
+		$this->dompdf->render();
+		$this->dompdf->stream('Laporan User.pdf', array('Attachment' =>0));
+	}
+	public function print()
+	{
+        $data['row'] = $this->user_m->get();  
+		$data['judul'] = 'User';
+		$data['jumlah'] = $this->user_m->hitunguser();
+		$this->template->load('template', 'User/print' , $data);
+	}
     public function add()
 	{
 
@@ -45,7 +70,7 @@ class Dashboard extends CI_Controller {
 				if($this->db->affected_rows() > 0){
 					echo "<script> alert('Data Berhasil Disimpan'); </script>";
 				}
-				echo "<script>window.location='".site_url('User/dashboard')."'; </script>"; 
+				echo "<script>window.location='".site_url('dashboard')."'; </script>"; 
 		}
 	}
 
@@ -91,7 +116,7 @@ class Dashboard extends CI_Controller {
 				if($this->db->affected_rows() > 0){
 					echo "<script> alert('Data Berhasil Disimpan'); </script>";
 				}
-				echo "<script>window.location='".site_url('User/dashboard')."'; </script>"; 
+				echo "<script>window.location='".site_url('dashboard')."'; </script>"; 
 		}
 	} 
 	function username_check(){
@@ -114,5 +139,11 @@ class Dashboard extends CI_Controller {
 			echo "<script>alert('Data Berhasil Dihapus');</script>";
 		}
 		echo "<script>window.location='".site_url('dashboard')."';</script>";
+	}
+	public function search(){
+		$keyword = $this->input->post('keyword');
+		$data['judul'] = 'User';
+		$data['row']=$this->user_m->get_keyword($keyword);
+		$this->template->load('template', 'User/dashboard' , $data);
 	}
 }

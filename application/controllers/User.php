@@ -16,7 +16,18 @@ class User extends CI_Controller {
         $data['row'] = $this->user_m->get();
 		$this->template->load('template', 'user/user_data' , $data);
 	}
-
+	  public function hitunguser()
+	{   
+		$query = $this->db->get('user');
+			if($query->num_rows()>0)
+			{
+				return $query->num_rows();
+			}
+			else
+			{
+			return 0;
+			}
+	}
     public function add()
 	{
 
@@ -112,4 +123,5 @@ class User extends CI_Controller {
 		}
 		echo "<script>window.location='".site_url('user')."';</script>";
 	}
+	
 }
